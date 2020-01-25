@@ -29,6 +29,18 @@ namespace DevTaskJulianBenda.Controllers
             }) ;
         }
       
+        // POST: api/Products
+        [HttpPost]
+        public ProductRequestRespond PostProduct(ProductRequest request)
+        {
+            return new ProductRequestRespond { can_fulfill = 
+                request.quantity > 0
+                && _context.Products
+                    .Where(pro => pro.product_id == request.product_id)
+                    .Select(pro => pro.stock_available)
+                    .Sum() >= request.quantity
+            };
+        }
 
     }
 }
