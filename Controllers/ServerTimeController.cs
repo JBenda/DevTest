@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using DevTaskJulianBenda.Models;
 
 namespace DevTaskJulianBenda.Controllers
 {
@@ -11,5 +12,11 @@ namespace DevTaskJulianBenda.Controllers
     [ApiController]
     public class ServerTimeController : ControllerBase
     {
+        [HttpGet]
+        public ServerTime GetServerTime() {
+            return new ServerTime { 
+                serverTime = DateTime.UtcNow
+            };
+        }
     }
 }
